@@ -1,20 +1,40 @@
 from tkinter import *
+import wolf
 from sheep import *
 from wolf import *
 
 init_pos_limit = 200
 
 
-def simulate(rounds,
-             sheep_amount,
-             sheep_limit,
-             wolf_distance,
-             sheep_distance):
+def draw(wolf):
+    window = Tk()
+    window.title('HeRb')
+    window.geometry(str(3 * init_pos_limit) + 'x' + str(3 * init_pos_limit))
+    window.resizable(False, False)
+
+    canvas = Canvas(window, width=3 * init_pos_limit, height=3 * init_pos_limit, bg="#42F058")
+    canvas.pack()
+    create_circle(wolf.position[0], wolf.position[1], 10, canvas, "red")
+
+    window.mainloop()
+
+
+def create_circle(x, y, r, canvas, color):
+    x0 = x - r
+    y0 = y - r
+    x1 = x + r
+    y1 = y + r
+    return canvas.create_oval(x0, y0, x1, y1, fill=color, outline="")
+
+
+def simulate(rounds, sheep_amount, sheep_limit, wolf_distance, sheep_distance):
     sheeps = []
     wolf = Wolf(wolf_distance)
 
-    for i in range(sheep_amount):
-        sheeps.append(Sheep(i, sheep_limit, sheep_distance))
+    # for i in range(sheep_amount):
+    #     sheeps.append(Sheep(i, sheep_limit, sheep_distance, 0, 0))
+
+    draw(wolf)
 
     for i in range(rounds):
         print('Numer tury: ' + str(i+1))
@@ -32,10 +52,4 @@ def simulate(rounds,
 
 
 if __name__ == '__main__':
-    window = Tk()
-    window.title('HeRb')
-    window.geometry(str(3*init_pos_limit) + 'x' + str(3*init_pos_limit))
-    window.resizable(False, False)
-    window.configure(background='#42F058')
-    window.mainloop()
     simulate(50, 15, 10.0, 1.0, 0.5)

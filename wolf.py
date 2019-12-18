@@ -1,9 +1,10 @@
 import math
+from main import *
 
 
 class Wolf:
     def __init__(self, distance):
-        self.position = [0.0, 0.0]
+        self.position = [1.5*init_pos_limit, 1.5*init_pos_limit]
         self.wolf_move_dist = distance
 
     def print_wolf(self):
