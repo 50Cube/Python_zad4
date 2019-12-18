@@ -28,8 +28,8 @@ class Wolf:
     def move(self, sheep, distance, sheeps):
         old_pos = [self.position[0], self.position[1]]
         if distance < self.wolf_move_dist:
-            print('Wilk zjadl owce nr ' + str(sheep.id + 1) + ' :(')
-            print()
+            # print('Wilk zjadl owce nr ' + str(sheep.id + 1) + ' :(')
+            # print()
             self.position[0] = sheep.position[0]
             self.position[1] = sheep.position[1]
             sheeps.remove(sheep)
