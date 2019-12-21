@@ -8,11 +8,11 @@ sheeps = []
 
 def draw(wolf):
     canvas.pack()
-    create_circle(wolf.position[0], wolf.position[1], 10, canvas, "red")
+    wolf.circle = create_circle(wolf.position[0], wolf.position[1], 10, canvas, "red")
 
     canvas.bind("<Key>", key)
     canvas.bind("<Button-1>", callback_left)
-    canvas.bind("<Button-3>", callback_right)
+    canvas.bind("<Button-3>", lambda event, wolff=wolf: callback_right(event, wolff))
 
     window.mainloop()
 
@@ -34,9 +34,9 @@ def callback_left(event):
     add_sheep(event.x, event.y, 10)
 
 
-def callback_right(event):
+def callback_right(event, wolff):
     print("Clicked at", event.x, event.y)
-    #move_wolf(event.x, event.y)
+    move_wolf(wolff, event.x, event.y)
 
 
 def add_sheep(x, y, sheep_distance):
@@ -45,8 +45,10 @@ def add_sheep(x, y, sheep_distance):
 
 
 def move_wolf(wolf, x, y):
+    canvas.delete(wolf.circle)
     wolf.position[0] = x
     wolf.position[1] = y
+    wolf.circle = create_circle(wolf.position[0], wolf.position[1], 10, canvas, "red")
 
 
 def simulate(rounds, sheep_amount, sheep_limit, wolf_distance, sheep_distance):

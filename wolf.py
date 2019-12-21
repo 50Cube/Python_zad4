@@ -6,6 +6,7 @@ class Wolf:
     def __init__(self, distance):
         self.position = [1.5*init_pos_limit, 1.5*init_pos_limit]
         self.wolf_move_dist = distance
+        self.circle = None
 
     def print_wolf(self):
         print('Wilk znajduje sie na pozycji '
