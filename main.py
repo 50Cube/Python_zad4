@@ -4,6 +4,7 @@ from wolf import *
 
 init_pos_limit = 200
 sheeps = []
+sheep_circles = []
 
 
 def draw(wolf):
@@ -13,6 +14,11 @@ def draw(wolf):
     canvas.bind("<Key>", key)
     canvas.bind("<Button-1>", callback_left)
     canvas.bind("<Button-3>", lambda event, wolff=wolf: callback_right(event, wolff))
+
+    # TODO: dostosowanie pozycji przyciskow do rozmiaru okna
+
+    step_button = Button(window, text="Step", width=20, height=1).place(x=init_pos_limit/4, y=3 * init_pos_limit + 10)
+    reset_button = Button(window, text="Reset", width=20, height=1, command=lambda wolff=wolf: click_reset(wolff)).place(x=init_pos_limit + 10, y=3 * init_pos_limit + 10)
 
     window.mainloop()
 
@@ -41,7 +47,8 @@ def callback_right(event, wolff):
 
 def add_sheep(x, y, sheep_distance):
     sheeps.append(Sheep(sheep_distance, x, y))
-    create_circle(x, y, 10, canvas, "blue")
+    tmp = create_circle(x, y, 10, canvas, "blue")
+    sheep_circles.append(tmp)
 
 
 def move_wolf(wolf, x, y):
@@ -49,6 +56,14 @@ def move_wolf(wolf, x, y):
     wolf.position[0] = x
     wolf.position[1] = y
     wolf.circle = create_circle(wolf.position[0], wolf.position[1], 10, canvas, "red")
+
+
+def click_reset(wolf):
+    move_wolf(wolf, 1.5*init_pos_limit, 1.5*init_pos_limit)
+    sheeps.clear()
+    for i in range(len(sheep_circles)):
+        canvas.delete(sheep_circles[i])
+    sheep_circles.clear()
 
 
 def simulate(rounds, sheep_amount, sheep_limit, wolf_distance, sheep_distance):
@@ -74,7 +89,7 @@ def simulate(rounds, sheep_amount, sheep_limit, wolf_distance, sheep_distance):
 if __name__ == '__main__':
     window = Tk()
     window.title('HeRb')
-    window.geometry(str(3 * init_pos_limit) + 'x' + str(3 * init_pos_limit))
+    window.geometry(str(3 * init_pos_limit) + 'x' + str(3 * init_pos_limit + 40) + '+500-100')
     window.resizable(False, False)
 
     canvas = Canvas(window, width=3 * init_pos_limit, height=3 * init_pos_limit, bg="#42F058")
