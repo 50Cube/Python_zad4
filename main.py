@@ -17,7 +17,7 @@ def draw(wolf):
 
     # TODO: dostosowanie pozycji przyciskow do rozmiaru okna
 
-    step_button = Button(window, text="Step", width=20, height=1).place(x=init_pos_limit/4, y=3 * init_pos_limit + 10)
+    step_button = Button(window, text="Step", width=20, height=1, command=click_step).place(x=init_pos_limit/4, y=3 * init_pos_limit + 10)
     reset_button = Button(window, text="Reset", width=20, height=1, command=lambda wolff=wolf: click_reset(wolff)).place(x=init_pos_limit + 10, y=3 * init_pos_limit + 10)
 
     window.mainloop()
@@ -49,6 +49,7 @@ def add_sheep(x, y, sheep_distance):
     sheeps.append(Sheep(sheep_distance, x, y))
     tmp = create_circle(x, y, 10, canvas, "blue")
     sheep_circles.append(tmp)
+    update_sheep_label()
 
 
 def move_wolf(wolf, x, y):
@@ -58,12 +59,29 @@ def move_wolf(wolf, x, y):
     wolf.circle = create_circle(wolf.position[0], wolf.position[1], 10, canvas, "red")
 
 
+def click_step():
+    if len(sheeps) == 0:
+        no_sheep_window = Toplevel(window)
+        no_sheep_window.geometry('275x50+400-100')
+        no_sheep_window.title('Error')
+        display = Label(no_sheep_window, text="There are no sheep on map.")
+        display.config(font=("Courier", 12))
+        display.pack()
+        no_sheep_window.focus_set()
+        no_sheep_window.grab_set()
+    # TODO: pojedynczy krok symulacji
+
+
 def click_reset(wolf):
     move_wolf(wolf, 1.5*init_pos_limit, 1.5*init_pos_limit)
     sheeps.clear()
     for i in range(len(sheep_circles)):
         canvas.delete(sheep_circles[i])
     sheep_circles.clear()
+
+
+def update_sheep_label():
+    var.set('Current sheep amount: ' + str(len(sheeps)))
 
 
 def simulate(rounds, sheep_amount, sheep_limit, wolf_distance, sheep_distance):
@@ -93,5 +111,9 @@ if __name__ == '__main__':
     window.resizable(False, False)
 
     canvas = Canvas(window, width=3 * init_pos_limit, height=3 * init_pos_limit, bg="#42F058")
+
+    var = StringVar()
+    update_sheep_label()
+    sheep_label = Label(window, textvariable=var).place(x=3 * init_pos_limit - 200, y=3 * init_pos_limit + 7)
 
     simulate(50, 15, 10.0, 1.0, 0.5)
