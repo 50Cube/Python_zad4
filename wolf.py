@@ -1,12 +1,13 @@
 import math
-from main import *
+from globals import *
+from sheep import *
 
 
 class Wolf:
     def __init__(self, distance):
         self.position = [1.5*init_pos_limit, 1.5*init_pos_limit]
         self.wolf_move_dist = distance
-        self.circle = None
+        self.circle = create_circle(self.position[0], self.position[1], 10, 'red')
 
     def print_wolf(self):
         print('Wilk znajduje sie na pozycji '
@@ -31,6 +32,7 @@ class Wolf:
         if distance < self.wolf_move_dist:
             # print('Wilk zjadl owce nr ' + str(sheep.id + 1) + ' :(')
             # print()
+            canvas.move(self.circle, sheep.position[0] - self.position[0], sheep.position[1] - self.position[1])
             self.position[0] = sheep.position[0]
             self.position[1] = sheep.position[1]
             sheeps.remove(sheep)
@@ -41,8 +43,14 @@ class Wolf:
             vector[0] = sheep.position[0] - self.position[0]
             vector[1] = sheep.position[1] - self.position[1]
             vector_length = math.sqrt(vector[0] ** 2 + vector[1] ** 2)
+            canvas.move(self.circle, (vector[0] / vector_length) * self.wolf_move_dist, (vector[1] / vector_length) * self.wolf_move_dist)
             self.position[0] += (vector[0] / vector_length) * self.wolf_move_dist
             self.position[1] += (vector[1] / vector_length) * self.wolf_move_dist
+
+    def relocate(self, x, y):
+        canvas.move(self.circle, x - self.position[0], y - self.position[1])
+        self.position[0] = x
+        self.position[1] = y
 
     def __str__(self):
         return 'Wolf(position: ({0}; {1}))'.format('%0.3f' % self.position[0],
