@@ -1,6 +1,7 @@
 from tkinter import *
 
 init_pos_limit = 200
+sheeps = []
 
 window = Tk()
 window.title('HeRb')
@@ -12,6 +13,10 @@ canvas.pack()
 
 var = StringVar()
 sheep_label = Label(window, textvariable=var).place(x=3 * init_pos_limit - 200, y=3 * init_pos_limit + 7)
+
+
+def update_sheep_label():
+    var.set('Current sheep amount: ' + str(len(sheeps)))
 
 
 def create_circle(x, y, r, color):

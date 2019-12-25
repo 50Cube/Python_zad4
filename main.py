@@ -3,19 +3,7 @@ from sheep import *
 from wolf import *
 from globals import *
 
-sheeps = []
 wolf = Wolf(50)
-
-
-def draw():
-    canvas.bind("<Key>", key)
-    canvas.bind("<Button-1>", callback_left)
-    canvas.bind("<Button-3>", callback_right)
-
-    # TODO: dostosowanie pozycji przyciskow do rozmiaru okna
-
-    step_button = Button(window, text="Step", width=20, height=1, command=click_step).place(x=init_pos_limit/4, y=3 * init_pos_limit + 10)
-    reset_button = Button(window, text="Reset", width=20, height=1, command=lambda wolff=wolf: click_reset()).place(x=init_pos_limit + 10, y=3 * init_pos_limit + 10)
 
 
 def key(event):
@@ -57,10 +45,6 @@ def click_reset():
     sheeps.clear()
 
 
-def update_sheep_label():
-    var.set('Current sheep amount: ' + str(len(sheeps)))
-
-
 def simulate():
     print('Liczba owiec: ' + str(len(sheeps)))
     wolf.print_wolf()
@@ -74,7 +58,14 @@ def simulate():
     wolf.move(tmp_sheep, tmp_dist, sheeps)
 
 
+canvas.bind("<Key>", key)
+canvas.bind("<Button-1>", callback_left)
+canvas.bind("<Button-2>", callback_right)
+
+# TODO: dostosowanie pozycji przyciskow do rozmiaru okna
+step_button = Button(window, text="Step", width=20, height=1, command=click_step).place(x=init_pos_limit/4, y=3 * init_pos_limit + 10)
+reset_button = Button(window, text="Reset", width=20, height=1, command=click_reset).place(x=init_pos_limit + 10, y=3 * init_pos_limit + 10)
+
 if __name__ == '__main__':
-    draw()
-    update_sheep_label()
+    # draw()
     window.mainloop()

@@ -36,6 +36,7 @@ class Wolf:
             self.position[0] = sheep.position[0]
             self.position[1] = sheep.position[1]
             sheeps.remove(sheep)
+            update_sheep_label()
         else:
             # print('gonie owce nr ' + str(sheep.id+1))
             # print()

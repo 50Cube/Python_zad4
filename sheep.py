@@ -1,6 +1,7 @@
 import random
 from globals import *
 
+
 class Sheep:
     def __init__(self, distance, positionX, positionY):
         self.position = [positionX, positionY]
@@ -31,5 +32,5 @@ class Sheep:
     #                                                          '%0.3f' % self.position[0],
     #                                                          '%0.3f' % self.position[1])
 
-    def __repr__(self):
-        return self.__str__()
+    def __del__(self):
+        canvas.delete(self.circle)
