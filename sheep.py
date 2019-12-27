@@ -3,8 +3,8 @@ from globals import *
 
 
 class Sheep:
-    def __init__(self, distance, positionX, positionY):
-        self.position = [positionX, positionY]
+    def __init__(self, distance, position_x, position_y):
+        self.position = [position_x, position_y]
         self.sheep_move_dist = distance
         self.circle = create_circle(self.position[0], self.position[1], 10, 'blue')
 
@@ -26,11 +26,6 @@ class Sheep:
         else:
             self.position[0] += -self.sheep_move_dist
             canvas.move(self.circle, -self.sheep_move_dist, 0)
-
-    # def __str__(self):
-    #     return 'Sheep(id: {0}, position: ({1}; {2}))'.format(str(self.id),
-    #                                                          '%0.3f' % self.position[0],
-    #                                                          '%0.3f' % self.position[1])
 
     def __del__(self):
         canvas.delete(self.circle)

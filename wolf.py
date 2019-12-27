@@ -1,5 +1,4 @@
 import math
-from globals import *
 from sheep import *
 
 
@@ -23,23 +22,19 @@ class Wolf:
                 closest_sheep = sheeps[i]
                 closest_sheep_distance = math.sqrt((sheeps[i].position[0] - self.position[0]) ** 2
                                                    + (sheeps[i].position[1] - self.position[1]) ** 2)
-            # print(closest_sheep_distance)
-            # closest_sheep.print_sheep()
         return closest_sheep, closest_sheep_distance
 
     def move(self, sheep, distance, sheeps):
         old_pos = [self.position[0], self.position[1]]
         if distance < self.wolf_move_dist:
-            # print('Wilk zjadl owce nr ' + str(sheep.id + 1) + ' :(')
-            # print()
             canvas.move(self.circle, sheep.position[0] - self.position[0], sheep.position[1] - self.position[1])
             self.position[0] = sheep.position[0]
             self.position[1] = sheep.position[1]
             sheeps.remove(sheep)
             update_sheep_label()
+            if len(sheeps) == 0:
+                last_sheep_eaten()
         else:
-            # print('gonie owce nr ' + str(sheep.id+1))
-            # print()
             vector = [0.0, 0.0]
             vector[0] = sheep.position[0] - self.position[0]
             vector[1] = sheep.position[1] - self.position[1]

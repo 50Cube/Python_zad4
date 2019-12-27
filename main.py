@@ -1,9 +1,7 @@
-from tkinter import *
-from sheep import *
 from wolf import *
 from globals import *
 
-wolf = Wolf(50)
+wolf = Wolf(10)
 
 
 def key(event):
@@ -11,12 +9,12 @@ def key(event):
 
 
 def callback_left(event):
-    print("Clicked at", event.x, event.y)
-    add_sheep(event.x, event.y, 10)
+    # print("Clicked at", event.x, event.y)
+    add_sheep(event.x, event.y, 5)
 
 
 def callback_right(event):
-    print("Clicked at", event.x, event.y)
+    # print("Clicked at", event.x, event.y)
     wolf.relocate(event.x, event.y)
 
 
@@ -37,7 +35,6 @@ def click_step():
         no_sheep_window.grab_set()
     else:
         simulate()
-    # TODO: pojedynczy krok symulacji
 
 
 def click_reset():
@@ -46,14 +43,12 @@ def click_reset():
 
 
 def simulate():
-    print('Liczba owiec: ' + str(len(sheeps)))
-    wolf.print_wolf()
+    # wolf.print_wolf()
     if len(sheeps) == 0:
         print('Wilk zjadł wszystkie owce')
     for j in range(len(sheeps)):
         sheeps[j].move_sheep()
-        sheeps[j].print_sheep()
-    print()
+        # sheeps[j].print_sheep()
     tmp_sheep, tmp_dist = wolf.check_distance(sheeps)
     wolf.move(tmp_sheep, tmp_dist, sheeps)
 
@@ -61,6 +56,7 @@ def simulate():
 canvas.bind("<Key>", key)
 canvas.bind("<Button-1>", callback_left)
 canvas.bind("<Button-2>", callback_right)
+canvas.bind("<Button-3>", callback_right)
 
 # TODO: dostosowanie pozycji przyciskow do rozmiaru okna
 step_button = Button(window, text="Step", width=20, height=1, command=click_step).place(x=init_pos_limit/4, y=3 * init_pos_limit + 10)

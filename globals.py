@@ -4,7 +4,7 @@ init_pos_limit = 200
 sheeps = []
 
 window = Tk()
-window.title('HeRb')
+window.title('Wolf&Sheep')
 window.geometry(str(3 * init_pos_limit) + 'x' + str(3 * init_pos_limit + 40) + '+500-100')
 window.resizable(False, False)
 
@@ -17,6 +17,17 @@ sheep_label = Label(window, textvariable=var).place(x=3 * init_pos_limit - 200, 
 
 def update_sheep_label():
     var.set('Current sheep amount: ' + str(len(sheeps)))
+
+
+def last_sheep_eaten():
+    eaten_sheep_window = Toplevel(window)
+    eaten_sheep_window.geometry('310x50+400-100')
+    eaten_sheep_window.title('Wolf ate all sheep!')
+    display = Label(eaten_sheep_window, text="There are no more sheep on map.")
+    display.config(font=("Courier", 12))
+    display.pack()
+    eaten_sheep_window.focus_set()
+    eaten_sheep_window.grab_set()
 
 
 def create_circle(x, y, r, color):
