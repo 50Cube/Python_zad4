@@ -48,7 +48,6 @@ def simulate():
         print('Wilk zjadł wszystkie owce')
     for j in range(len(sheeps)):
         sheeps[j].move_sheep()
-        # sheeps[j].print_sheep()
     tmp_sheep, tmp_dist = wolf.check_distance(sheeps)
     wolf.move(tmp_sheep, tmp_dist, sheeps)
 
@@ -58,9 +57,10 @@ canvas.bind("<Button-1>", callback_left)
 canvas.bind("<Button-2>", callback_right)
 canvas.bind("<Button-3>", callback_right)
 
-# TODO: dostosowanie pozycji przyciskow do rozmiaru okna
-step_button = Button(window, text="Step", width=20, height=1, command=click_step).place(x=init_pos_limit/4, y=3 * init_pos_limit + 10)
-reset_button = Button(window, text="Reset", width=20, height=1, command=click_reset).place(x=init_pos_limit + 10, y=3 * init_pos_limit + 10)
+step_button = Button(window, text="Step", width=init_pos_limit//10, height=1, command=click_step)\
+    .place(x=init_pos_limit/4, y=3 * init_pos_limit + init_pos_limit//20)
+reset_button = Button(window, text="Reset", width=init_pos_limit//10, height=1, command=click_reset)\
+    .place(x=init_pos_limit + 10, y=3 * init_pos_limit + init_pos_limit//20)
 
 if __name__ == '__main__':
     # draw()

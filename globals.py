@@ -12,7 +12,7 @@ canvas = Canvas(window, width=3 * init_pos_limit, height=3 * init_pos_limit, bg=
 canvas.pack()
 
 var = StringVar()
-sheep_label = Label(window, textvariable=var).place(x=3 * init_pos_limit - 200, y=3 * init_pos_limit + 7)
+sheep_label = Label(window, width=init_pos_limit//10, textvariable=var).place(x=2 * init_pos_limit, y=3 * init_pos_limit + init_pos_limit//21)
 
 
 def update_sheep_label():
