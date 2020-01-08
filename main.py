@@ -19,7 +19,7 @@ def add_sheep(x, y, sheep_distance):
 
 
 def click_step():
-    if len(sheeps) == 0:
+    if not sheeps:
         no_sheep_window = Toplevel(window)
         no_sheep_window.geometry('275x50+400-100')
         no_sheep_window.title('Error')
@@ -39,8 +39,8 @@ def click_reset():
 
 
 def simulate():
-    for j in range(len(sheeps)):
-        sheeps[j].move_sheep()
+    for sheep in sheeps:
+        sheep.move_sheep()
     tmp_sheep, tmp_dist = wolf.check_distance(sheeps)
     wolf.move(tmp_sheep, tmp_dist, sheeps)
 
