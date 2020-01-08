@@ -1,5 +1,4 @@
-from tkinter import *
-from tkinter import messagebox
+from tkinter import messagebox, Toplevel, Label, Canvas, StringVar, Tk
 
 init_pos_limit = 200
 sheeps = []

@@ -12,7 +12,6 @@ class Sheep:
         print('Owca znajduje sie na pozycji {0}'.format(str(self.position)))
 
     def move_sheep(self):
-        old_pos = [self.position[0], self.position[1]]
         direction = random.randint(0, 3)
         if direction == 0:
             self.position[1] += self.sheep_move_dist

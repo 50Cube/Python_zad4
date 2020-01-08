@@ -1,3 +1,4 @@
+from tkinter import Button
 from wolf import *
 from globals import *
 
@@ -9,12 +10,10 @@ def key(event):
 
 
 def callback_left(event):
-    # print("Clicked at", event.x, event.y)
     add_sheep(event.x, event.y, 5)
 
 
 def callback_right(event):
-    # print("Clicked at", event.x, event.y)
     wolf.relocate(event.x, event.y)
 
 
@@ -43,7 +42,6 @@ def click_reset():
 
 
 def simulate():
-    # wolf.print_wolf()
     if len(sheeps) == 0:
         print('Wilk zjadł wszystkie owce')
     for j in range(len(sheeps)):
@@ -63,7 +61,6 @@ reset_button = Button(window, text="Reset", width=init_pos_limit//10, height=1, 
     .place(x=init_pos_limit + 10, y=3 * init_pos_limit + init_pos_limit//20)
 
 if __name__ == '__main__':
-    # draw()
     if init_pos_limit < 180 or init_pos_limit > 230:
         print('Rozmiar okna jest niepoprawny')
         exit(0)

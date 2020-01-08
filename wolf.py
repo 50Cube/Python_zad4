@@ -25,7 +25,6 @@ class Wolf:
         return closest_sheep, closest_sheep_distance
 
     def move(self, sheep, distance, sheeps):
-        old_pos = [self.position[0], self.position[1]]
         if distance < self.wolf_move_dist:
             canvas.move(self.circle, sheep.position[0] - self.position[0], sheep.position[1] - self.position[1])
             self.position[0] = sheep.position[0]
