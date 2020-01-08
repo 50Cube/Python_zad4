@@ -64,4 +64,7 @@ reset_button = Button(window, text="Reset", width=init_pos_limit//10, height=1, 
 
 if __name__ == '__main__':
     # draw()
+    if init_pos_limit < 180 or init_pos_limit > 230:
+        print('Rozmiar okna jest niepoprawny')
+        exit(0)
     window.mainloop()
