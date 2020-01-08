@@ -10,9 +10,6 @@ class Sheep:
         self.sheep_move_dist = distance
         self.circle = create_circle(self.position[0], self.position[1], 10, 'blue')
 
-    def print_sheep(self):
-        print('Owca znajduje sie na pozycji {0}'.format(str(self.position)))
-
     def move_sheep(self):
         direction = random.randint(0, 3)
         if direction == 0:

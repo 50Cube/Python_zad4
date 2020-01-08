@@ -8,10 +8,6 @@ class Wolf:
         self.wolf_move_dist = distance
         self.circle = create_circle(self.position[0], self.position[1], 10, 'red')
 
-    def print_wolf(self):
-        print('Wilk znajduje sie na pozycji '
-              '[' + '%0.3f' % self.position[0] + ', ' + '%0.3f' % self.position[1] + ']')
-
     def check_distance(self, sheeps):
         closest_sheep = sheeps[0]
         closest_sheep_distance = math.sqrt((sheeps[0].position[0] - self.position[0]) ** 2
@@ -46,7 +42,3 @@ class Wolf:
         canvas.move(self.circle, x - self.position[0], y - self.position[1])
         self.position[0] = x
         self.position[1] = y
-
-    def __str__(self):
-        return 'Wolf(position: ({0}; {1}))'.format('%0.3f' % self.position[0],
-                                                   '%0.3f' % self.position[1])

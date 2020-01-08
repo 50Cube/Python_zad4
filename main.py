@@ -39,8 +39,6 @@ def click_reset():
 
 
 def simulate():
-    if len(sheeps) == 0:
-        print('Wilk zjadł wszystkie owce')
     for j in range(len(sheeps)):
         sheeps[j].move_sheep()
     tmp_sheep, tmp_dist = wolf.check_distance(sheeps)
@@ -58,6 +56,6 @@ reset_button = Button(window, text="Reset", width=init_pos_limit//10, height=1, 
 
 if __name__ == '__main__':
     if init_pos_limit < 180 or init_pos_limit > 230:
-        print('Rozmiar okna jest niepoprawny')
+        print('Incorrect window size')
         exit(0)
     window.mainloop()
