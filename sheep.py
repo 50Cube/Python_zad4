@@ -28,4 +28,7 @@ class Sheep:
             canvas.move(self.circle, -self.sheep_move_dist, 0)
 
     def __del__(self):
-        canvas.delete(self.circle)
+        try:
+            canvas.delete(self.circle)
+        except TclError:
+            pass

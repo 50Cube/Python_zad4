@@ -1,12 +1,21 @@
 from tkinter import *
+from tkinter import messagebox
 
 init_pos_limit = 200
 sheeps = []
 
+
+def on_close():
+    if messagebox.askokcancel("Quit", "Are you sure you want to quit?"):
+        window.destroy()
+
+
+sys.stdout = None
 window = Tk()
 window.title('Wolf&Sheep')
 window.geometry(str(3 * init_pos_limit) + 'x' + str(3 * init_pos_limit + 40) + '+500-100')
 window.resizable(False, False)
+window.protocol("WM_DELETE_WINDOW", on_close)
 
 canvas = Canvas(window, width=3 * init_pos_limit, height=3 * init_pos_limit, bg="#42F058")
 canvas.pack()
