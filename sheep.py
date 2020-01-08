@@ -1,4 +1,6 @@
 import random
+from _tkinter import TclError
+
 from globals import *
 
 

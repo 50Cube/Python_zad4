@@ -5,10 +5,6 @@ from globals import *
 wolf = Wolf(10)
 
 
-def key(event):
-    print("pressed", repr(event.char))
-
-
 def callback_left(event):
     add_sheep(event.x, event.y, 5)
 
@@ -39,6 +35,7 @@ def click_step():
 def click_reset():
     wolf.relocate(1.5*init_pos_limit, 1.5*init_pos_limit)
     sheeps.clear()
+    update_sheep_label()
 
 
 def simulate():
@@ -50,7 +47,6 @@ def simulate():
     wolf.move(tmp_sheep, tmp_dist, sheeps)
 
 
-canvas.bind("<Key>", key)
 canvas.bind("<Button-1>", callback_left)
 canvas.bind("<Button-2>", callback_right)
 canvas.bind("<Button-3>", callback_right)
